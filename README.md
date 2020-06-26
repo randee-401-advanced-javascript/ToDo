@@ -6,18 +6,13 @@
 
 ### Links and Resources
 
-- [submission PR](http://xyz.com)
+- [submission PR](https://github.com/randee-401-advanced-javascript/to-do/pull/1)
 
 - [front-end application](http://xyz.com) (when applicable)
 
 ### Setup
 
-#### `.env` requirements (where applicable)
 
-i.e.
-
-- `PORT` - Port Number
-- `MONGODB_URI` - URL to the running mongo instance/db
 
 #### How to initialize/run your application (where applicable)
 
