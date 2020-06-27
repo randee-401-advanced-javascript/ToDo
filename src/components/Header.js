@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 function Header(props) {
   return (
     <header>
-        <ul>
+        {/* <ul>
             <li>
                 <Link to='/'>Home</Link>
             </li>
             <li>
                 <Link to='/tasks'>The List</Link>
             </li>
-        </ul>
+        </ul> */}
 
         <h1>To-Do Task Keeper</h1>
     </header>

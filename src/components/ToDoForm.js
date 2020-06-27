@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
 
 function ToDoForm(props){
-  const [task, setTask] = useState('Task Title');
+  const [title, setTitle] = useState('Task Title');
   const [description, setDescription] = useState('Description of task');
   const [assignment, setAssignment] = useState('Husband');
   const [status, setStatus] = useState(false);
   const [difficulty, setDifficulty] = useState(5);
 
   function updateComplete(e){ 
-    if(false) setStatus(true)
-    if(true) setStatus(false)
+    if(e.target === false) setStatus(true)
+    if(e.target === true) setStatus(false)
   }
+
+  // function createList(){
+  //   let task = {
+  //     title,
+  //     description,
+  //     assignment,
+  //     status,
+  //     difficulty
+  //   }
+
+  //   props.updateList([...props.currentList, task ])
+  // }
 
   return (
     <div>
       <label>Task:</label>
-      <input type="text" onChange={ (e) => { setTask(e.target.value)}} value={task} />
+      <input type="text" onChange={ (e) => { setTitle(e.target.value)}} value={title} />
       <label>Description</label>
       <input type="text" onChange={ (e) => { setDescription(e.target.value)}} value={description} />
       <label>Assignment</label>
@@ -24,6 +36,7 @@ function ToDoForm(props){
       <input type="number" min="1" max="5" value={difficulty} onChange={ (e) => {setDifficulty(e.target.value)}}  />
       <label>Completed?</label>
       <input type="radio" onChange={ updateComplete } />
+      {/* <button type="submit" onClick={ createList }>Ready to change your world? Click here.</button> */}
     </div>
   )
 
