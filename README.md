@@ -6,7 +6,7 @@
 
 ### Links and Resources
 
-- [submission PR](https://github.com/randee-401-advanced-javascript/to-do/pull/1)
+- [submission PR](https://github.com/randee-401-advanced-javascript/to-do/compare/bootstraps?expand=1)
 
 - [front-end application](http://xyz.com) (when applicable)
 
