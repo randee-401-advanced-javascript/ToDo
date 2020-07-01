@@ -32,7 +32,9 @@ function ToDo(props) {
   return (
     <Container>
       <Form addTask={addTask} />
-      <List tasks={tasks} modifyTask{modifyTask} />
+      <List tasks={tasks} modifyTask={modifyTask} />
     </Container>
   )
 }
+
+export default ToDo;

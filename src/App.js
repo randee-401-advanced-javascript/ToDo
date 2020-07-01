@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Form from './components/ToDoForm'
+import ToDo from './components/ToDo';
+// import Form from './components/ToDoForm'
 
 import './styles/styles.sass'
 
@@ -15,8 +16,9 @@ function App() {
       
       <Header />
       </BrowserRouter>
-      <Form />
-      <Footer />
+      <ToDo />
+      {/* <Form /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
