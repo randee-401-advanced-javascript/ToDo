@@ -1,12 +1,12 @@
-# LAB - Class 26
+# LAB - Class 27
 
-## To DO
+## To DO - DB HOOK UP
 
 ### Author: Randee Orion 
 
 ### Links and Resources
 
-- [submission PR](https://github.com/randee-401-advanced-javascript/to-do/compare/bootstraps?expand=1)
+- [submission PR](https://github.com/randee-401-advanced-javascript/to-do/pull/2)
 
 - [front-end application](http://xyz.com) (when applicable)
 
