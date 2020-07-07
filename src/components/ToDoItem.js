@@ -1,31 +1,52 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form'
 
-function ToDoItem(props) {
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+function Item(props) {
   return (
-    <div>
-      <p>{props.data.title}</p>
-      <p>{props.data.description}</p>
-      <p>{props.data.assignment}</p>
-      <p>{props.data.difficulty}</p>
+    <Card border='dark'>
+      <Card.Body>
+        <Card.Title as='h5'>Task:</Card.Title>
+        <Card.Text>{props.item.text}</Card.Text>
 
-      <Form.Group controlId="status">
-        <Form.Check 
-        label='Completed?' 
-        type="switch" 
-        value={false}
-        onChange={() => {
-          let newTask = { ... props.data }
-          newTask.status = true ? false : true;
-          props.modifyTask(props.indx, newTask);
-        }}
-        id={'status-switch-' + props.indx}
-        label={props.data.status}
-        />
-      </Form.Group>
+        <Card.Title as='h5'>Assigned To:</Card.Title>
+        <Card.Text>{props.item.assignee}</Card.Text>
 
-    </div>
+        <Card.Title as='h5'>Difficulty:</Card.Title>
+        <Card.Text>{props.item.difficulty}</Card.Text>
+
+        <Card.Title as='h5'>Status:</Card.Title>
+        <Form>
+          <Form.Group controlId={`status-${props.idx}`}>
+            <Form.Check
+                value={props.item.complete}
+                type='checkbox'
+                onChange={(e) => {
+                  let newTask = {...props.item};
+                  newTask.complete = !newTask.complete;
+
+                  props.updateTask(props.idx, newTask);
+                }}
+                id={`complete-box-${props.idx}`}
+                label={props.item.complete ? 'Complete' : 'Incomplete'}
+                checked={props.item.complete}
+            />
+          </Form.Group>
+
+          <Button 
+            variant='primary' 
+            size='sm' 
+            onClick={ () => {
+              props.deleteTask(props.idx);
+            } }
+          >Delete</Button>
+
+        </Form>
+      </Card.Body>
+    </Card>
   )
 }
 
-export default ToDoItem;
+export default Item;
