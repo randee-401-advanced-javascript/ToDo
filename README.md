@@ -1,6 +1,6 @@
-# LAB - Class 27
+# LAB - Class 28
 
-## To DO - DB HOOK UP
+## To DO - Pagination
 
 ### Author: Randee Orion 
 
