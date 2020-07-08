@@ -1,36 +1,44 @@
-import React from 'react';
-import CardColumns from 'react-bootstrap/CardColumns';
+import React, { useState } from 'react';
+import ToDoItem from './ToDoItem';
+import Pagination from './Pagination';
 
-import Item from './ToDoItem.js';
+function ToDoList(props) {
+    let items = [];
 
-async function List(props) {
-  
-  let items = [];
-  let allTheThings = await props.tasks();
-  console.log('all the things', allTheThings)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(2);
 
-  if (allTheThings) {
-    for ( let i = 0; i < allTheThings.length; i++ ) {
-      items.push(
-        <Item 
-          difficulty={allTheThings.difficulty}
-          text={allTheThings.text}
 
-          // item={props.tasks[i]} 
-          // key={i} 
-          // idx={i} 
-          deleteTask= {props.deleteTask} 
-          updateTask={props.updateTask}
-          />
-      );
-    }
-  }
 
-  return (
-    <CardColumns>
-      { items }
-    </CardColumns>
-  )
+
+    if (props.tasks)
+
+        for (let i = 0; i < props.tasks.length; i++)
+            items.push(
+                <ToDoItem
+                    key={i}
+                    indx={i}
+                    data={props.tasks[i]}
+                    deleteTask={props.deleteTask}
+                    modifyTask={props.modifyTask}
+                />,
+            );
+    let idxLastPost = currentPage * postsPerPage;
+    let idxFirstPost = idxLastPost - postsPerPage;
+    let currentPost = items.slice(idxFirstPost, idxLastPost);
+
+    console.log('currentPost', currentPost)
+    console.log('items', items)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    return (
+        <div>
+            <h1>Tasks</h1>
+            <Pagination postsPerPage={postsPerPage} totalPosts={items.length} paginate={paginate} />
+            {currentPost}
+        </div>
+    );
 }
 
-export default List;
+export default ToDoList;
