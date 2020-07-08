@@ -1,45 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-function ToDoForm(props){
-  const [title, setTitle] = useState('Task Title');
-  const [description, setDescription] = useState('Description of task');
-  const [assignment, setAssignment] = useState('Husband');
-  const [status, setStatus] = useState(false);
-  const [difficulty, setDifficulty] = useState(5);
+import useForm from '../hooks/useForm';
 
-  function updateComplete(e){ 
-    if(e.target === false) setStatus(true)
-    if(e.target === true) setStatus(false)
-  }
+function ToDoForm(props) {
+    const [update, submit, data] = useForm(props.addTask);
 
-  // function createList(){
-  //   let task = {
-  //     title,
-  //     description,
-  //     assignment,
-  //     status,
-  //     difficulty
-  //   }
+    return (
+        <Form onSubmit={submit}>
+            <Form.Group controlId='todo-description'>
+                <Form.Label>Task Description</Form.Label>
+                <Form.Control
+                    as='textarea'
+                    rows='3'
+                    onChange={(e) => {
+                        update('text', e.target.value);
+                    }}
+                />
+            </Form.Group>
+            <Form.Group controlId='todo-assignee'>
+                <Form.Label>Assigned To:</Form.Label>
+                <Form.Control
+                    type='text'
+                    placeholder='Enter name'
+                    onChange={(e) => {
+                        update('assignee', e.target.value);
+                    }}
+                />
+            </Form.Group>
+            <Form.Group controlId='todo-status'>
+                <Form.Label>Status</Form.Label>
+                <Form.Check
+                    onChange={(e) => {
+                        update('status', e.target.checked);
+                    }}
+                    type='switch'
+                    id='status-switch'
+                    label={data.status ? 'complete' : 'incomplete'}
+                />
+            </Form.Group>
+            <Form.Group controlId='todo-difficulty'>
+                <Form.Label>Difficulty</Form.Label>
+                <Form.Control
+                    type='range'
+                    min={0}
+                    max={5}
+                    step={1}
+                    onChange={(e) => {
+                        update('difficulty', e.target.value);
+                    }}
+                />
+            </Form.Group>
 
-  //   props.updateList([...props.currentList, task ])
-  // }
-
-  return (
-    <div>
-      <label>Task:</label>
-      <input type="text" onChange={ (e) => { setTitle(e.target.value)}} value={title} />
-      <label>Description</label>
-      <input type="text" onChange={ (e) => { setDescription(e.target.value)}} value={description} />
-      <label>Assignment</label>
-      <input type="text" onChange={ (e) => { setAssignment(e.target.value)}} value={assignment} />
-      <label>Challenge Level</label>
-      <input type="number" min="1" max="5" value={difficulty} onChange={ (e) => {setDifficulty(e.target.value)}}  />
-      <label>Completed?</label>
-      <input type="radio" onChange={ updateComplete } />
-      {/* <button type="submit" onClick={ createList }>Ready to change your world? Click here.</button> */}
-    </div>
-  )
-
+            <Button variant='primary' type='submit'>
+                Add Task
+            </Button>
+        </Form>
+    );
 }
 
 export default ToDoForm;
